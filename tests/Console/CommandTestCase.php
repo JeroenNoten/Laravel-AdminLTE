@@ -43,18 +43,6 @@ class CommandTestCase extends TestCase
     }
 
     /**
-     * Get package providers.
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        // Register our service provider into the Laravel's application.
-
-        return ['JeroenNoten\LaravelAdminLte\AdminLteServiceProvider'];
-    }
-
-    /**
      * Create dummy files for a particular resource.
      *
      * @param string $resName

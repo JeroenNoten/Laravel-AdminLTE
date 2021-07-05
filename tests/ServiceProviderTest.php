@@ -4,16 +4,6 @@ use JeroenNoten\LaravelAdminLte\AdminLte;
 
 class ServiceProviderTest extends TestCase
 {
-    /**
-     * Get package providers.
-     */
-    protected function getPackageProviders($app)
-    {
-        // Register our service provider into the Laravel's application.
-
-        return ['JeroenNoten\LaravelAdminLte\AdminLteServiceProvider'];
-    }
-
     public function testRegisterSingletonInstance()
     {
         // Check the instance of AdminLte resolver.

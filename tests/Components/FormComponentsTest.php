@@ -6,16 +6,6 @@ use JeroenNoten\LaravelAdminLte\Components;
 class FormComponentsTest extends TestCase
 {
     /**
-     * Get package providers.
-     */
-    protected function getPackageProviders($app)
-    {
-        // Register our service provider into the Laravel's application.
-
-        return ['JeroenNoten\LaravelAdminLte\AdminLteServiceProvider'];
-    }
-
-    /**
      * Return array with the available blade components.
      */
     protected function getComponents()

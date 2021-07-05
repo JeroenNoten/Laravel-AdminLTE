@@ -6,6 +6,7 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use JeroenNoten\LaravelAdminLte\Console\AdminLteInstallCommand;
 use JeroenNoten\LaravelAdminLte\Console\AdminLtePluginCommand;
@@ -22,6 +23,7 @@ class AdminLteServiceProvider extends BaseServiceProvider
      * @var array
      */
     protected $layoutComponents = [
+        Components\Layout\NavbarDarkmodeWidget::class,
         Components\Layout\NavbarNotification::class,
     ];
 
@@ -106,6 +108,7 @@ class AdminLteServiceProvider extends BaseServiceProvider
         $this->registerViewComposers($view);
         $this->registerMenu($events, $config);
         $this->loadComponents();
+        $this->loadRoutes();
     }
 
     /**
@@ -226,5 +229,24 @@ class AdminLteServiceProvider extends BaseServiceProvider
         );
 
         $this->loadViewComponentsAs('adminlte', $components);
+    }
+
+    /**
+     * Load the package web routes.
+     *
+     * @return void
+     */
+    private function loadRoutes()
+    {
+        $routesCfg = [
+            'as' => 'adminlte.',
+            'prefix' => 'adminlte',
+            'middleware' => ['web'],
+        ];
+
+        Route::group($routesCfg, function () {
+            $routesPath = $this->packagePath('routes/web.php');
+            $this->loadRoutesFrom($routesPath);
+        });
     }
 }

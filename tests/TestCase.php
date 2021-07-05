@@ -28,6 +28,16 @@ class TestCase extends BaseTestCase
 
     private $translator;
 
+    /**
+     * Load the packages services providers.
+     */
+    protected function getPackageProviders($app)
+    {
+        // Register our package service provider into the Laravel application.
+
+        return ['JeroenNoten\LaravelAdminLte\AdminLteServiceProvider'];
+    }
+
     protected function makeMenuBuilder($uri = 'http://example.com', GateContract $gate = null, $locale = 'en')
     {
         return new Builder([
